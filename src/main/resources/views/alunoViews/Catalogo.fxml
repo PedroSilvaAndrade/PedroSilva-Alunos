@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.biblioqueue.controller.CatalogoController"
+            stylesheets="@../css/biblioqueue.css"
+            prefWidth="900" prefHeight="700">
+
+    <!-- ===== TOP BAR ===== -->
+    <top>
+        <HBox styleClass="top-bar" alignment="CENTER">
+            <Label text="BiblioQueue" styleClass="top-bar-title" HBox.hgrow="ALWAYS"/>
+        </HBox>
+    </top>
+
+    <!-- ===== CENTRO: Filtro + Lista de Livros ===== -->
+    <center>
+        <VBox spacing="0" style="-fx-background-color: #E8EEF7;">
+
+            <!-- Filtro de categorias -->
+            <HBox alignment="CENTER" style="-fx-padding: 16 0 12 0; -fx-background-color: #E8EEF7;">
+                <HBox styleClass="filter-box" alignment="CENTER_LEFT" spacing="10" maxWidth="360">
+                    <Label text="⚙" style="-fx-font-size: 14px; -fx-text-fill: #94A3B8;"/>
+                    <ComboBox fx:id="comboCategorias"
+                              styleClass="filter-combo"
+                              promptText="Todas as categorias"
+                              prefWidth="280"
+                              onAction="#onCategoriaChanged"/>
+                </HBox>
+            </HBox>
+
+            <!-- Lista de livros com scroll -->
+            <ScrollPane fx:id="scrollPane"
+                        styleClass="scroll-pane"
+                        fitToWidth="true"
+                        VBox.vgrow="ALWAYS"
+                        style="-fx-background-color: transparent;">
+                <VBox fx:id="listaLivrosContainer"
+                      spacing="12"
+                      style="-fx-padding: 0 270 20 270; -fx-background-color: #E8EEF7;">
+                    <!-- Cards injetados dinamicamente pelo controller -->
+                </VBox>
+            </ScrollPane>
+        </VBox>
+    </center>
+
+    <!-- ===== BOTTOM NAV ===== -->
+    <bottom>
+        <HBox styleClass="bottom-bar" alignment="CENTER" spacing="0">
+            <HBox.margin>
+                <Insets/>
+            </HBox.margin>
+
+            <!-- Catálogo (ativo) -->
+            <VBox alignment="CENTER" HBox.hgrow="ALWAYS" styleClass="nav-btn, nav-btn-active"
+                  onMouseClicked="#onNavCatalogo" style="-fx-cursor: hand; -fx-padding: 6 0 6 0;">
+                <Label text="📖" style="-fx-font-size: 20px; -fx-text-fill: #1E3A8A;"/>
+                <Label text="Catálogo" style="-fx-font-size: 11px; -fx-text-fill: #1E3A8A; -fx-font-weight: bold;"/>
+            </VBox>
+
+            <!-- Empréstimos -->
+            <VBox alignment="CENTER" HBox.hgrow="ALWAYS" styleClass="nav-btn"
+                  onMouseClicked="#onNavEmprestimos" style="-fx-cursor: hand; -fx-padding: 6 0 6 0;">
+                <Label text="📗" style="-fx-font-size: 20px; -fx-text-fill: #94A3B8;"/>
+                <Label text="Empréstimos" style="-fx-font-size: 11px; -fx-text-fill: #94A3B8;"/>
+            </VBox>
+
+            <!-- Reservas -->
+            <VBox alignment="CENTER" HBox.hgrow="ALWAYS" styleClass="nav-btn"
+                  onMouseClicked="#onNavReservas" style="-fx-cursor: hand; -fx-padding: 6 0 6 0;">
+                <Label text="🕐" style="-fx-font-size: 20px; -fx-text-fill: #94A3B8;"/>
+                <Label text="Reservas" style="-fx-font-size: 11px; -fx-text-fill: #94A3B8;"/>
+            </VBox>
+        </HBox>
+    </bottom>
+
+</BorderPane>

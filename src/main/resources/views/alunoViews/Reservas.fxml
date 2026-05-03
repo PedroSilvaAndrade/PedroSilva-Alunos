@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.biblioqueue.controller.ReservasController"
+            stylesheets="@../css/biblioqueue.css"
+            prefWidth="900" prefHeight="700">
+
+    <!-- ===== TOP BAR ===== -->
+    <top>
+        <VBox>
+            <!-- Navbar preta -->
+            <HBox styleClass="top-bar" alignment="CENTER">
+                <Label text="BiblioQueue" styleClass="top-bar-title" HBox.hgrow="ALWAYS"/>
+            </HBox>
+
+            <!-- Header azul -->
+            <HBox styleClass="user-header" alignment="CENTER_LEFT" spacing="12">
+                <VBox HBox.hgrow="ALWAYS">
+                    <Label text="Bem-vindo," styleClass="welcome-label"/>
+                    <Label fx:id="lblNomeUsuario" text="Ana Silva" styleClass="user-name-label"/>
+                </VBox>
+                <Button text="→" styleClass="logout-btn" onAction="#onLogout"
+                        style="-fx-font-size: 20px;"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- ===== CENTRO ===== -->
+    <center>
+        <ScrollPane styleClass="scroll-pane" fitToWidth="true"
+                    style="-fx-background-color: #E8EEF7;">
+            <VBox spacing="16" style="-fx-padding: 24 270 30 270; -fx-background-color: #E8EEF7;">
+
+                <!-- Título + contador -->
+                <HBox alignment="CENTER_LEFT">
+                    <VBox HBox.hgrow="ALWAYS" spacing="2">
+                        <Label text="Minhas Reservas" styleClass="section-title"/>
+                        <Label text="Acompanhe sua posição na fila" styleClass="section-subtitle"/>
+                    </VBox>
+                    <Label fx:id="lblContadorReservas" text="0/3" styleClass="counter-label"/>
+                </HBox>
+
+                <!-- ===== ESTADO VAZIO (sem reservas) ===== -->
+                <VBox fx:id="emptyStateReservas"
+                      styleClass="empty-card"
+                      spacing="18"
+                      alignment="CENTER"
+                      visible="true"
+                      managed="true">
+
+                    <!-- Ícone circular -->
+                    <VBox alignment="CENTER"
+                          style="-fx-background-color: #EFF6FF; -fx-background-radius: 50;
+                                 -fx-min-width: 70px; -fx-min-height: 70px;
+                                 -fx-max-width: 70px; -fx-max-height: 70px;">
+                        <Label text="🕐" style="-fx-font-size: 28px;"/>
+                    </VBox>
+
+                    <VBox spacing="6" alignment="CENTER">
+                        <Label text="Você não tem reservas ativas" styleClass="empty-title"/>
+                        <Label text="Entre na fila de espera quando um livro estiver indisponível"
+                               styleClass="empty-subtitle"
+                               wrapText="true"
+                               maxWidth="260"
+                               style="-fx-text-alignment: center;"/>
+                        <Label text="Limite: 3 reservas simultâneas" styleClass="empty-limit"/>
+                    </VBox>
+                </VBox>
+
+                <!-- ===== LISTA DE RESERVAS (gerada dinamicamente) ===== -->
+                <VBox fx:id="listaReservasContainer"
+                      spacing="12"
+                      visible="false"
+                      managed="false">
+                    <!-- Cards de reservas injetados pelo ReservasController -->
+                    <!-- Exemplo de card de reserva (comentado — gerado via código):
+
+                    <VBox styleClass="loan-card" spacing="12">
+                        <HBox spacing="12" alignment="TOP_LEFT">
+                            <VBox alignment="CENTER"
+                                  style="-fx-background-color: #EFF6FF; -fx-background-radius: 8;
+                                         -fx-padding: 10; -fx-min-width: 42px; -fx-min-height: 42px;
+                                         -fx-max-width: 42px; -fx-max-height: 42px;">
+                                <Label text="🕐" style="-fx-font-size: 18px;"/>
+                            </VBox>
+                            <VBox HBox.hgrow="ALWAYS" spacing="4">
+                                <Label text="Título do Livro" styleClass="loan-book-title"/>
+                                <Label text="#ID-001" styleClass="loan-book-id"/>
+                                <HBox>
+                                    <Label text="Na fila"
+                                           style="-fx-background-color: #FEF3C7;
+                                                  -fx-background-radius: 20;
+                                                  -fx-padding: 3 12 3 12;
+                                                  -fx-font-size: 11px;
+                                                  -fx-text-fill: #92400E;
+                                                  -fx-font-weight: bold;"/>
+                                </HBox>
+                            </VBox>
+                        </HBox>
+                        <Separator/>
+                        <HBox>
+                            <Label text="Posição na fila" styleClass="loan-label" HBox.hgrow="ALWAYS"/>
+                            <Label text="2º" styleClass="loan-value"/>
+                        </HBox>
+                        <HBox>
+                            <Label text="Data da Reserva" styleClass="loan-label" HBox.hgrow="ALWAYS"/>
+                            <Label text="20/04/2026" styleClass="loan-value"/>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                            <Button text="Cancelar Reserva"
+                                    style="-fx-background-color: transparent;
+                                           -fx-text-fill: #DC2626;
+                                           -fx-font-size: 12px;
+                                           -fx-border-color: #FECACA;
+                                           -fx-border-radius: 8;
+                                           -fx-background-radius: 8;
+                                           -fx-cursor: hand;
+                                           -fx-padding: 6 16 6 16;"/>
+                        </HBox>
+                    </VBox>
+                    -->
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+    <!-- ===== BOTTOM NAV ===== -->
+    <bottom>
+        <HBox styleClass="bottom-bar" alignment="CENTER" spacing="0">
+
+            <VBox alignment="CENTER" HBox.hgrow="ALWAYS"
+                  onMouseClicked="#onNavCatalogo" style="-fx-cursor: hand; -fx-padding: 6 0 6 0;">
+                <Label text="📖" style="-fx-font-size: 20px; -fx-text-fill: #94A3B8;"/>
+                <Label text="Catálogo" style="-fx-font-size: 11px; -fx-text-fill: #94A3B8;"/>
+            </VBox>
+
+            <VBox alignment="CENTER" HBox.hgrow="ALWAYS"
+                  onMouseClicked="#onNavEmprestimos" style="-fx-cursor: hand; -fx-padding: 6 0 6 0;">
+                <Label text="📗" style="-fx-font-size: 20px; -fx-text-fill: #94A3B8;"/>
+                <Label text="Empréstimos" style="-fx-font-size: 11px; -fx-text-fill: #94A3B8;"/>
+            </VBox>
+
+            <!-- Reservas (ativo) -->
+            <VBox alignment="CENTER" HBox.hgrow="ALWAYS"
+                  onMouseClicked="#onNavReservas" style="-fx-cursor: hand; -fx-padding: 6 0 6 0;">
+                <Label text="🕐" style="-fx-font-size: 20px; -fx-text-fill: #1E3A8A;"/>
+                <Label text="Reservas" style="-fx-font-size: 11px; -fx-text-fill: #1E3A8A; -fx-font-weight: bold;"/>
+            </VBox>
+        </HBox>
+    </bottom>
+
+</BorderPane>

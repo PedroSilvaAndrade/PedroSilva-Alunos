@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.biblioqueue.controller.DetalheLivroController"
+            stylesheets="@../css/biblioqueue.css"
+            prefWidth="900" prefHeight="700">
+
+    <!-- ===== TOP BAR ===== -->
+    <top>
+        <VBox>
+            <!-- Navbar preta -->
+            <HBox styleClass="top-bar" alignment="CENTER">
+                <Label text="BiblioQueue" styleClass="top-bar-title" HBox.hgrow="ALWAYS"/>
+            </HBox>
+
+            <!-- Header azul com nome do usuário -->
+            <HBox styleClass="user-header" alignment="CENTER_LEFT" spacing="12">
+                <VBox HBox.hgrow="ALWAYS">
+                    <Label text="Bem-vindo," styleClass="welcome-label"/>
+                    <Label fx:id="lblNomeUsuario" text="Ana Silva" styleClass="user-name-label"/>
+                </VBox>
+                <Button text="→" styleClass="logout-btn" onAction="#onLogout"
+                        style="-fx-font-size: 20px;"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- ===== CENTRO ===== -->
+    <center>
+        <ScrollPane styleClass="scroll-pane" fitToWidth="true"
+                    style="-fx-background-color: #E8EEF7;">
+            <VBox spacing="16" style="-fx-padding: 20 270 30 270; -fx-background-color: #E8EEF7;">
+
+                <!-- Botão Voltar -->
+                <HBox>
+                    <Button fx:id="btnVoltar"
+                            text="← Voltar ao catálogo"
+                            styleClass="back-btn"
+                            onAction="#onVoltar"/>
+                </HBox>
+
+                <!-- Card principal do livro -->
+                <VBox styleClass="detail-card" spacing="14">
+
+                    <!-- Ícone + Título + Autor + Ano -->
+                    <HBox spacing="16" alignment="TOP_LEFT">
+                        <VBox alignment="CENTER" styleClass="detail-icon-box"
+                              minWidth="56" minHeight="56" maxWidth="56" maxHeight="56">
+                            <Label text="📖" style="-fx-font-size: 24px;"/>
+                        </VBox>
+                        <VBox spacing="4" HBox.hgrow="ALWAYS">
+                            <Label fx:id="lblTitulo"
+                                   text="Estruturas de Dados e Algoritmos"
+                                   styleClass="detail-title"
+                                   wrapText="true"/>
+                            <Label fx:id="lblAutor" text="Thomas H. Cormen" styleClass="detail-author"/>
+                            <Label fx:id="lblAno" text="2009" styleClass="detail-author"/>
+                            <!-- Tag categoria -->
+                            <HBox spacing="6" style="-fx-padding: 6 0 0 0;">
+                                <Label fx:id="lblCategoria" text="Algoritmos" styleClass="tag-category"/>
+                            </HBox>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Separador -->
+                    <Separator style="-fx-background-color: #F1F5F9;"/>
+
+                    <!-- Campos de detalhes -->
+                    <VBox spacing="10">
+
+                        <HBox>
+                            <Label text="ISBN" styleClass="detail-field-label" HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="lblIsbn" text="978-0262033848" styleClass="detail-field-value"/>
+                        </HBox>
+
+                        <HBox>
+                            <Label text="ID do Exemplar" styleClass="detail-field-label" HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="lblIdExemplar" text="#COMP-001" styleClass="detail-field-value-blue"/>
+                        </HBox>
+
+                        <HBox>
+                            <Label text="Ano de Publicação" styleClass="detail-field-label" HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="lblAnoPublicacao" text="2009" styleClass="detail-field-value"/>
+                        </HBox>
+
+                        <HBox>
+                            <Label text="Disponibilidade" styleClass="detail-field-label" HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="lblDisponibilidade" text="2 exemplar(es)" styleClass="detail-field-value-green"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Box de descrição -->
+                    <VBox styleClass="detail-description-box">
+                        <Label fx:id="lblDescricao"
+                               text="Referência completa sobre estruturas de dados e algoritmos computacionais."
+                               styleClass="detail-description-text"
+                               wrapText="true"/>
+                    </VBox>
+
+                    <!-- Botão de ação (empréstimo / reserva / bloqueado) -->
+                    <VBox fx:id="actionContainer" spacing="8">
+
+                        <!-- Alerta bloqueado (visível quando acesso bloqueado) -->
+                        <HBox fx:id="alertaBloqueado"
+                              styleClass="alert-card"
+                              spacing="10"
+                              alignment="CENTER_LEFT"
+                              visible="true"
+                              managed="true">
+                            <Label text="⚠" style="-fx-font-size: 14px; -fx-text-fill: #DC2626;"/>
+                            <VBox HBox.hgrow="ALWAYS">
+                                <Label text="Acesso Bloqueado:"
+                                       style="-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #DC2626;"/>
+                                <Label text="Regularize seus atrasos para fazer novos empréstimos ou reservas."
+                                       styleClass="alert-text"
+                                       wrapText="true"/>
+                            </VBox>
+                        </HBox>
+
+                        <!-- Botão pegar emprestado (visível quando disponível e sem bloqueio) -->
+                        <Button fx:id="btnEmprestimo"
+                                text="Pegar Emprestado"
+                                visible="false"
+                                managed="false"
+                                onAction="#onEmprestimo"
+                                style="-fx-background-color: #1E3A8A; -fx-text-fill: white;
+                                       -fx-font-size: 14px; -fx-font-weight: bold;
+                                       -fx-background-radius: 10; -fx-padding: 12 0 12 0;
+                                       -fx-cursor: hand;"
+                                maxWidth="Infinity"/>
+
+                        <!-- Botão entrar na fila (visível quando indisponível e sem bloqueio) -->
+                        <Button fx:id="btnReserva"
+                                text="Entrar na Fila de Espera"
+                                visible="false"
+                                managed="false"
+                                onAction="#onReserva"
+                                style="-fx-background-color: #EA580C; -fx-text-fill: white;
+                                       -fx-font-size: 14px; -fx-font-weight: bold;
+                                       -fx-background-radius: 10; -fx-padding: 12 0 12 0;
+                                       -fx-cursor: hand;"
+                                maxWidth="Infinity"/>
+                    </VBox>
+
+                    <!-- Rodapé do card -->
+                    <HBox alignment="CENTER">
+                        <Label fx:id="lblEmprestimosAtivos"
+                               text="Empréstimos ativos: 2/3"
+                               styleClass="detail-active-loans"/>
+                    </HBox>
+
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+
+    <!-- ===== BOTTOM NAV ===== -->
+    <bottom>
+        <HBox styleClass="bottom-bar" alignment="CENTER" spacing="0">
+
+            <!-- Catálogo (ativo nesta tela pois viemos do catálogo) -->
+            <VBox alignment="CENTER" HBox.hgrow="ALWAYS"
+                  onMouseClicked="#onNavCatalogo" style="-fx-cursor: hand; -fx-padding: 6 0 6 0;">
+                <Label text="📖" style="-fx-font-size: 20px; -fx-text-fill: #1E3A8A;"/>
+                <Label text="Catálogo" style="-fx-font-size: 11px; -fx-text-fill: #1E3A8A; -fx-font-weight: bold;"/>
+            </VBox>
+
+            <VBox alignment="CENTER" HBox.hgrow="ALWAYS"
+                  onMouseClicked="#onNavEmprestimos" style="-fx-cursor: hand; -fx-padding: 6 0 6 0;">
+                <Label text="📗" style="-fx-font-size: 20px; -fx-text-fill: #94A3B8;"/>
+                <Label text="Empréstimos" style="-fx-font-size: 11px; -fx-text-fill: #94A3B8;"/>
+            </VBox>
+
+            <VBox alignment="CENTER" HBox.hgrow="ALWAYS"
+                  onMouseClicked="#onNavReservas" style="-fx-cursor: hand; -fx-padding: 6 0 6 0;">
+                <Label text="🕐" style="-fx-font-size: 20px; -fx-text-fill: #94A3B8;"/>
+                <Label text="Reservas" style="-fx-font-size: 11px; -fx-text-fill: #94A3B8;"/>
+            </VBox>
+        </HBox>
+    </bottom>
+
+</BorderPane>

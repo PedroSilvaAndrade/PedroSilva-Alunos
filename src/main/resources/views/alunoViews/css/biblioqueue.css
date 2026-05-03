@@ -1,0 +1,398 @@
+/* ===== BiblioQueue - Stylesheet ===== */
+
+/* --- Root & Background --- */
+.root {
+    -fx-background-color: #E8EEF7;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+/* --- TopBar (navbar preta) --- */
+.top-bar {
+    -fx-background-color: #1A1A2E;
+    -fx-padding: 10 20 10 20;
+    -fx-min-height: 50px;
+}
+
+.top-bar-title {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+/* --- Header azul (boas-vindas) --- */
+.user-header {
+    -fx-background-color: #1E3A8A;
+    -fx-padding: 14 24 14 24;
+}
+
+.welcome-label {
+    -fx-text-fill: #CBD5E1;
+    -fx-font-size: 12px;
+}
+
+.user-name-label {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.logout-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+}
+
+/* --- BottomBar (nav inferior) --- */
+.bottom-bar {
+    -fx-background-color: white;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 8 0 8 0;
+    -fx-min-height: 60px;
+}
+
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 11px;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-padding: 4 20 4 20;
+    -fx-graphic-text-gap: 4;
+}
+
+.nav-btn-active {
+    -fx-text-fill: #1E3A8A;
+    -fx-font-weight: bold;
+}
+
+/* --- Cards de livro --- */
+.book-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0, 0, 2);
+    -fx-padding: 16 18 16 18;
+    -fx-cursor: hand;
+}
+
+.book-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 12, 0, 0, 3);
+}
+
+.book-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E293B;
+}
+
+.book-author {
+    -fx-font-size: 13px;
+    -fx-text-fill: #64748B;
+}
+
+.book-year {
+    -fx-font-size: 12px;
+    -fx-text-fill: #94A3B8;
+}
+
+/* --- Tags / Badges --- */
+.tag-category {
+    -fx-background-color: #F1F5F9;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-padding: 3 10 3 10;
+    -fx-font-size: 11px;
+    -fx-text-fill: #475569;
+}
+
+.tag-disponivel {
+    -fx-text-fill: #16A34A;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.tag-fila {
+    -fx-text-fill: #EA580C;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.tag-atrasado {
+    -fx-background-color: #DC2626;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-padding: 3 12 3 12;
+    -fx-font-size: 11px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* --- Filtro de categorias --- */
+.filter-box {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1;
+    -fx-padding: 10 16 10 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 4, 0, 0, 1);
+}
+
+.filter-combo {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-size: 13px;
+    -fx-text-fill: #475569;
+    -fx-pref-width: 280px;
+}
+
+/* --- Card de empréstimo --- */
+.loan-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0, 0, 2);
+    -fx-padding: 16 18 16 18;
+}
+
+.loan-card-atrasado {
+    -fx-background-color: #FFF5F5;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #FECACA;
+    -fx-border-width: 1;
+    -fx-padding: 16 18 16 18;
+}
+
+.loan-book-icon {
+    -fx-background-color: #FEE2E2;
+    -fx-background-radius: 8;
+    -fx-padding: 8;
+    -fx-font-size: 18px;
+    -fx-text-fill: #DC2626;
+}
+
+.loan-book-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E293B;
+}
+
+.loan-book-id {
+    -fx-font-size: 12px;
+    -fx-text-fill: #94A3B8;
+}
+
+.loan-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #64748B;
+}
+
+.loan-value {
+    -fx-font-size: 13px;
+    -fx-text-fill: #1E293B;
+    -fx-font-weight: bold;
+}
+
+.loan-value-atrasado {
+    -fx-font-size: 13px;
+    -fx-text-fill: #DC2626;
+    -fx-font-weight: bold;
+}
+
+.loan-atraso-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #DC2626;
+    -fx-font-weight: bold;
+}
+
+.loan-id-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #CBD5E1;
+}
+
+/* --- Alerta de acesso bloqueado --- */
+.alert-card {
+    -fx-background-color: #FFF5F5;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #FECACA;
+    -fx-border-width: 1;
+    -fx-padding: 14 16 14 16;
+}
+
+.alert-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #DC2626;
+}
+
+.alert-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #DC2626;
+    -fx-wrap-text: true;
+}
+
+/* --- Detalhes do livro --- */
+.detail-card {
+    -fx-background-color: white;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 12, 0, 0, 3);
+    -fx-padding: 22 24 22 24;
+}
+
+.detail-icon-box {
+    -fx-background-color: #EFF6FF;
+    -fx-background-radius: 12;
+    -fx-padding: 14;
+}
+
+.detail-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E293B;
+    -fx-wrap-text: true;
+}
+
+.detail-author {
+    -fx-font-size: 13px;
+    -fx-text-fill: #64748B;
+}
+
+.detail-separator {
+    -fx-border-color: #F1F5F9;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 0 0 8 0;
+}
+
+.detail-field-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #64748B;
+}
+
+.detail-field-value {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E293B;
+}
+
+.detail-field-value-blue {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E3A8A;
+}
+
+.detail-field-value-green {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #16A34A;
+}
+
+.detail-description-box {
+    -fx-background-color: #F8FAFC;
+    -fx-background-radius: 8;
+    -fx-padding: 12;
+}
+
+.detail-description-text {
+    -fx-font-size: 13px;
+    -fx-text-fill: #475569;
+    -fx-wrap-text: true;
+}
+
+.detail-active-loans {
+    -fx-font-size: 11px;
+    -fx-text-fill: #94A3B8;
+}
+
+/* --- Botão voltar --- */
+.back-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1E3A8A;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-padding: 6 0 6 0;
+}
+
+.back-btn:hover {
+    -fx-text-fill: #1E40AF;
+}
+
+/* --- Tela de reservas vazia --- */
+.empty-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0, 0, 2);
+    -fx-padding: 40 30 40 30;
+    -fx-alignment: center;
+}
+
+.empty-icon-circle {
+    -fx-background-color: #EFF6FF;
+    -fx-background-radius: 50;
+    -fx-min-width: 64px;
+    -fx-min-height: 64px;
+    -fx-max-width: 64px;
+    -fx-max-height: 64px;
+    -fx-alignment: center;
+}
+
+.empty-title {
+    -fx-font-size: 15px;
+    -fx-text-fill: #1E293B;
+    -fx-font-weight: bold;
+}
+
+.empty-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #64748B;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+.empty-limit {
+    -fx-font-size: 11px;
+    -fx-text-fill: #CBD5E1;
+}
+
+/* --- Título de seção --- */
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E293B;
+}
+
+.section-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #64748B;
+}
+
+.counter-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #94A3B8;
+}
+
+/* --- ScrollPane transparente --- */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical {
+    -fx-pref-width: 6px;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #CBD5E1;
+    -fx-background-radius: 3;
+}
